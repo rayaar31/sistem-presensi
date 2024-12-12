@@ -2,8 +2,8 @@
 // require_once __DIR__ . '/vendor/autoload.php'; // Memuat autoloader Composer
 
 // Memuat file .env
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+// $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+// $dotenv->load();
 
 // Membaca konfigurasi dari .env
 $host = getenv('DB_HOST');
