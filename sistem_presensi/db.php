@@ -1,20 +1,22 @@
 <?php
-// Mengambil DATABASE_URL dari environment variables Railway
-$databaseUrl = getenv('DATABASE_URL');
+// Ambil DATABASE_URL dari environment
+$dbUrl = getenv('DATABASE_URL');
+if (!$dbUrl) {
+    die("Error: DATABASE_URL tidak ditemukan. Tambahkan pada Environment Railway.");
+}
 
-// Parse DATABASE_URL untuk mendapatkan komponen-komponennya
-$parsedUrl = parse_url($databaseUrl);
+// Parse DATABASE_URL
+$parsedUrl = parse_url($dbUrl);
 
-// Menyusun informasi koneksi dari hasil parsing
-$host = $parsedUrl['host'];        // Host database (biasanya berupa hostname atau IP address)
-$username = $parsedUrl['user'];    // Username untuk database
-$password = $parsedUrl['pass'];    // Password untuk database
-$dbname = ltrim($parsedUrl['path'], '/'); // Nama database (diambil dari path)
+$db_host = $parsedUrl['host'] ?? 'localhost';
+$db_user = $parsedUrl['user'] ?? 'root';
+$db_pass = $parsedUrl['pass'] ?? '';
+$db_name = ltrim($parsedUrl['path'] ?? '', '/');
 
-// Koneksi ke database MySQL menggunakan mysqli
-$conn = new mysqli($host, $username, $password, $dbname);
+// Koneksi ke database
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
-// Mengecek apakah koneksi berhasil
+// Cek koneksi
 if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
