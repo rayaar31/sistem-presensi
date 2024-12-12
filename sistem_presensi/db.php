@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/vendor/autoload.php'; // Memuat autoloader Composer
+// require_once __DIR__ . '/vendor/autoload.php'; // Memuat autoloader Composer
 
 // Memuat file .env
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
