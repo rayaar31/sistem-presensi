@@ -1,13 +1,13 @@
 <?php
-$host = 'localhost';
-$user = 'root';
-$pass = '';
-$db = 'sistem_presensi';
-date_default_timezone_set("Asia/Jakarta");
+$db = parse_url(getenv("DATABASE_URL"));
+$host = $db["host"];
+$port = $db["port"];
+$user = $db["user"];
+$pass = $db["pass"];
+$dbname = ltrim($db["path"], '/');
 
+$conn = new mysqli($host, $user, $pass, $dbname, $port);
 
-$conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_error) {
-    die("Koneksi ke database gagal: " . $conn->connect_error);
+    die("Koneksi gagal: " . $conn->connect_error);
 }
-
