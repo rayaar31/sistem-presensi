@@ -1,0 +1,92 @@
+/* === Global Styles === */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9; /* Warna latar belakang */
+    color: #333; /* Warna teks utama */
+}
+
+/* === Kontainer Utama === */
+.container {
+    max-width: 900px;
+    margin: 200px ;
+    padding: 50px;
+    background-color: #fff;
+    border-radius: 35px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* === Header === */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    color: #007BFF;
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+header p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* === Navigasi === */
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    background-color: #007BFF;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #0056b3;
+}
+
+/* === Tombol Logout === */
+.logout-container {
+    text-align: center;
+    margin-top: 30px; /* Tambahkan jarak antara logout dengan navigasi */
+}
+
+.logout {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.logout:hover {
+    background-color: #a71d2a;
+}
+
+/* === Responsif === */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    nav a {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+}

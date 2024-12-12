@@ -1,0 +1,12 @@
+[build]
+  # Tentukan perintah build
+  command = "echo 'No build command'"
+
+  # Tentukan folder publik yang akan digunakan oleh Netlify
+  publish = "."
+
+[[redirects]]
+  from = "/*"
+  to = "/index.php"
+  status = 200
+  force = true
