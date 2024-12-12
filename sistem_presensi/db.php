@@ -1,30 +1,21 @@
 <?php
-$dbUrl = getenv('DATABASE_URL');
-if (!$dbUrl) {
-    die("Error: DATABASE_URL tidak ditemukan. Tambahkan pada Environment Railway.");
-}
+require_once __DIR__ . '/vendor/autoload.php'; // Memuat autoloader Composer
 
-$parsedUrl = parse_url($dbUrl);
+// Memuat file .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
-// Pastikan semua bagian URL tersedia
-if (!isset($parsedUrl['host'], $parsedUrl['user'], $parsedUrl['pass'], $parsedUrl['path'])) {
-    die("Error: Konfigurasi DATABASE_URL tidak lengkap.");
-}
+// Membaca konfigurasi dari .env
+$host = getenv('DB_HOST');
+$user = getenv('DB_USER');
+$pass = getenv('DB_PASS');
+$db = getenv('DB_NAME');
 
-$db_host = $parsedUrl['host'];
-$db_user = $parsedUrl['user'];
-$db_pass = $parsedUrl['pass'];
-$db_name = ltrim($parsedUrl['path'], '/');
+date_default_timezone_set("Asia/Jakarta");
 
-// Mengatur koneksi database
-$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+// Membuat koneksi ke database
+$conn = new mysqli($host, $user, $pass, $db);
 
-// Periksa koneksi
 if ($conn->connect_error) {
-    if (getenv('APP_ENV') === 'production') {
-        die("Koneksi gagal: Terjadi kesalahan pada server.");
-    } else {
-        die("Koneksi gagal: " . $conn->connect_error); // Pesan detail hanya di lingkungan non-produksi
-    }
+    die("Koneksi ke database gagal: " . $conn->connect_error);
 }
-?>
