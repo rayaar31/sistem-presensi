@@ -1,6 +1,6 @@
 <?php
 // Ambil DATABASE_URL dari environment
-$dbUrl = getenv('DATABASE_URL');
+$dbUrl = getenv('mysql://root:securepassword@containers-us-west-45.railway.app:3306/sistem_presensi');
 if (!$dbUrl) {
     die("Error: DATABASE_URL tidak ditemukan. Tambahkan pada Environment Railway.");
 }
